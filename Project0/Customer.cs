@@ -1,27 +1,41 @@
 using System.Collections.Generic;
+using System;
 namespace Project0
 {
     class Customer
     {
         //orderHistory is private because it is unique for each customer
         Dictionary<string,string> orderHistory = new Dictionary<string,string>();
-        //loginDirectory is static because it is the same for all instances
-        static Dictionary<string,string> loginDirectory = new Dictionary<string,string>();
-        static Store supremeStore = new Store();
+        public string _name { get; set; }
+        public string _password { get; set; }
+        public Customer()
+        {
+
+        }
         public Customer(string name, string password)
         {
-            loginDirectory.Add(name,password);
+            this._name = name;
+            this._password = password;
         }
         public void Order()
         {
-            string[] orderTemp = (supremeStore.orderSelection()).Split(" ");
+            string[] orderTemp = (Store.orderSelection()).Split("|");
             orderHistory.Add(orderTemp[0],orderTemp[1]);
             //string 1 is date
             //string 2 is product
         }
-        static string CustomerLogin()
+        public string printOrderHistory()
         {
-            return "";
+            string returnString = "";
+            foreach (var item in orderHistory)
+            {
+                returnString += item.Key + " " + item.Value+" $"+Store.GetPrice(item.Value) + "\n";
+            }
+            return returnString;
+        }
+        public override string ToString()
+        {
+            return _name + " " + _password;
         }
     }
 }

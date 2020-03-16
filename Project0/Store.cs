@@ -2,43 +2,45 @@ using System.Collections.Generic;
 using System;
 namespace Project0
 {
-    class Store
+    static class Store
     {
-        static Dictionary<string,double> productList = new Dictionary<string, double>()
+        static Io _io = new Io();
+        static List<Product> productList = new List<Product>()
         {
-            { "product" , 1000.00 },
-            { "product" , 1000.00 },
-            { "product" , 1000.00 },
-            { "product" , 1000.00 }
+            new Product ("product1","date",15,10),
+            new Product ("product2","date",20,10),
+            new Product ("product3","date",20,10),
+            new Product ("product4","date",20,10),
         };
-        public string orderSelection()
+        public static string orderSelection()
         {
             while (true)
             {
-                Console.WriteLine("What product would you like to buy today?");
-                foreach (var item in productList)
+                foreach (Product item in productList)
                 {
-                    Console.WriteLine(item.Key + "  $" + item.Value);
+                    _io.Output(item._name + "  $" + item._price + "\n");
                 }
-                Console.Write("Enter your choice: ");
-                string choice = Console.ReadLine().ToLower();
-                if(productList.ContainsKey(choice))
+                _io.Output("Enter your choice: ");
+                string choice = _io.Input();
+                if(Product.productNames.Contains(choice))
                 {
-                    DateTime timeStamp = DateTime.Today;
-                    return  timeStamp.ToString("d") +"|"+ timeStamp.ToString("g").Substring(9).Trim(' ') + " " + choice;
+                    DateTime timeStamp = DateTime.Now;
+                    return  timeStamp.ToString("F") + "|" + choice;
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input.");
+                    _io.Output("Invalid input. \n");
                 }
             }
         }
-        public double getPrice(string input)
+        public static double GetPrice(string input)
         {
-            double price;
-            if(productList.TryGetValue(input, out price))
+            foreach (var item in productList)
             {
-                return price;
+                if(item._name == input)
+                {
+                    return item._price;
+                }
             }
             return 0;
         }
