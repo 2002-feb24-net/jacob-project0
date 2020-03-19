@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using BusinessLogic;
 //Project 0 By Jacob Koch
 namespace Project0
 {
@@ -15,10 +16,6 @@ namespace Project0
         static Io _io = new Io();
         static async Task Main(string[] args)
         {
-            //put this into a method
-            string jsonData = await File.ReadAllTextAsync("../../../customer.json");
-            customerList = JsonSerializer.Deserialize<List<Customer>>(jsonData);
-            //
             _io.Output("Welcome to the store store! \n");
             _io.Output("Are you an existing member? (Y/N)");
             string input = _io.Input();
@@ -28,7 +25,7 @@ namespace Project0
             }
             else
             {
-                SignUp();
+                NewUser();
             }
             //access store for specific customer
             _io.Output("What product would you like to buy today? \n");
@@ -36,14 +33,22 @@ namespace Project0
             _io.Output("Thank you for your order! \n");
             _io.Output("Order History: \n");
             _io.Output(customerList[currentCustomer].printOrderHistory() + "\n");
-            //put this into a method
-            string text = JsonSerializer.Serialize(customerList);
-            await WriteToFileAsync(text , "../../../customer.json");
-            //
         }
-        static void SignUp()
+        async void JsonLoader()
         {
-            _io.Output("Sign Up: \n");
+            //change filepath to parameter
+            string jsonData = await File.ReadAllTextAsync("../../../customer.json");
+            customerList = JsonSerializer.Deserialize<List<Customer>>(jsonData);
+        }
+        async void JsonUploader()
+        {
+            //change filepath to parameter
+            string text = JsonSerializer.Serialize(customerList);
+            await WriteToFileAsync(text, "../../../customer.json");
+        }
+        static void NewUser()
+        {
+            _io.Output("Adding New User: \n");
             _io.Output("Enter a new username: ");
             string userName = _io.Input();
             //add check if username already exists
@@ -54,11 +59,11 @@ namespace Project0
         }
         static void LogIn()
         {
-            _io.Output("Enter your username: ");
-            string userName = _io.Input();
-            _io.Output("Enter your password: ");
-            string password = _io.Input();
-            string comparisonString = userName + " " + password;
+            _io.Output("Enter your firstName: ");
+            string firstName = _io.Input();
+            _io.Output("Enter your lastName: ");
+            string lastName = _io.Input();
+            string comparisonString = firstName + " " + lastName;
             //maybe try if(customerList.Contains(new Customer(userName,password)));
             for(int i = 0; i < customerList.Count; i++)
             {
@@ -69,7 +74,7 @@ namespace Project0
             }
             if(currentCustomer == -1)
             {
-                _io.Output("Error: Username or Password do not match. \n");
+                _io.Output("Error: Firstname or Lastname do not match. \n");
             }
         }
         async static Task WriteToJsonAsync(List<Customer> data, string filePath)
