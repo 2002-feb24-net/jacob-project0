@@ -25,7 +25,7 @@ namespace Project0.ConsoleUI
             var dependencies = new Dependencies();
             using IProject0Repository projectRepository = dependencies.
                 CreateProject0Repository();
-            _io.Output("Welcome to the Fast Food Store! \n");
+            _io.Output("Welcome to the latest in Food Delivery! \n");
             bool loopBool = true;
             while(loopBool)
             {
@@ -115,7 +115,7 @@ namespace Project0.ConsoleUI
                     Console.WriteLine(ex.Message);
                 }
             }
-            _io.Output("User Added.");
+            _io.Output("User Added. \n \n");
             projectRepository.AddCustomer(customer);
             projectRepository.Save();
         }
@@ -161,9 +161,9 @@ namespace Project0.ConsoleUI
                 {
                     productObject = productList.First(p => p.Name.ToLower() == productInput);
                 }
-                catch (ArgumentException ex)
+                catch (Exception ex)
                 {
-                    _io.Output("Product name input invalid.");
+                    _io.Output("Product name or Quantity input invalid. ");
                     s_logger.Info(ex);
                     Console.WriteLine(ex.Message);
                 }
@@ -225,7 +225,7 @@ namespace Project0.ConsoleUI
                 var customerName = projectRepository.GetCustomerById(item.CustomerId).FirstName + " " + projectRepository.GetCustomerById(item.CustomerId).LastName;
                 var locationName = projectRepository.GetLocationsById(item.CustomerId).LocationName;
                 _io.Output($"ID: {item.Id} Product Name: {productName} Quantity: {item.Quantity} " +
-                            $"Location: {locationName} Customer Name: {customerName} \n");
+                            $" Customer Name: {customerName} \n");
             }
         }
         static void DisplayCustomerHistory(IProject0Repository projectRepository)
@@ -257,9 +257,11 @@ namespace Project0.ConsoleUI
             {
                 var productName = projectRepository.GetProductById(item.ProductId).Name;
                 var customerName = projectRepository.GetCustomerById(item.CustomerId).FirstName + " " + projectRepository.GetCustomerById(item.CustomerId).LastName;
-                var locationName = projectRepository.GetLocationsById(item.CustomerId).LocationName;
+                //var locationName = projectRepository.GetLocationsById(item.CustomerId).LocationName;
+                //_io.Output($"ID: {item.Id} Product Name: {productName} Quantity: {item.Quantity} " +
+                //            $"Location: {locationName} Customer Name: {customerName} \n");
                 _io.Output($"ID: {item.Id} Product Name: {productName} Quantity: {item.Quantity} " +
-                            $"Location: {locationName} Customer Name: {customerName} \n");
+                            $" Customer Name: {customerName} \n");
             }
         }
         static void DisplaySpecificOrder(IProject0Repository projectRepository)
@@ -283,9 +285,11 @@ namespace Project0.ConsoleUI
             }
             var productName = projectRepository.GetProductById(specificOrder.ProductId).Name;
             var customerName = projectRepository.GetCustomerById(specificOrder.CustomerId).FirstName +" "+ projectRepository.GetCustomerById(specificOrder.CustomerId).LastName;
-            var locationName = projectRepository.GetLocationsById(specificOrder.CustomerId).LocationName;
+            // locationName = projectRepository.GetLocationsById(specificOrder.CustomerId).LocationName;
+            //_io.Output($"ID: {specificOrder.Id} Product Name: {productName} Quantity: {specificOrder.Quantity} " +
+            // $"Location: {locationName} Customer Name: {customerName} \n");
             _io.Output($"ID: {specificOrder.Id} Product Name: {productName} Quantity: {specificOrder.Quantity} " +
-                        $"Location: {locationName} Customer Name: {customerName} \n");
+             $" Customer Name: {customerName} \n");
         }
 
 

@@ -39,7 +39,7 @@ namespace Project0.DataAccess
                 CustomerId = order.CustomerId,
                 ProductId = order.ProductId,
                 OrderTime = order.OrderTime,
-                Quantity = order.Quantity
+                Quantity = order.Quantity, 
             };
         }
         //get the product entity

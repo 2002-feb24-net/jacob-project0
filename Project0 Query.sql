@@ -53,6 +53,9 @@ VALUES ('location example');
 INSERT INTO P0.StoreLocation (LocationName)
 VALUES ('Chilis');
 
+INSERT INTO P0.StoreLocation (LocationName)
+VALUES ('Arbys');
+
 INSERT INTO P0.Product (StoreLocationId, Name, Price, Stock)
 VALUES ((SELECT ID FROM P0.StoreLocation WHERE LocationName = 'Chilis'),'Soap',15,50);
 INSERT INTO P0.Product (StoreLocationId, Name, Price, Stock)
@@ -61,3 +64,10 @@ VALUES ((SELECT ID FROM P0.StoreLocation WHERE LocationName = 'Chilis'),'Salsa',
 INSERT INTO P0.Product (StoreLocationId, Name, Price, Stock)
 VALUES ((SELECT ID FROM P0.StoreLocation WHERE LocationName = 'location example'),'test product',10,100);
 SELECT * FROM P0.Product;
+
+
+INSERT INTO P0.Product (StoreLocationId, Name, Price, Stock)
+VALUES ((SELECT ID FROM P0.StoreLocation WHERE LocationName = 'Arbys'),'Chicken',5,7);
+
+INSERT INTO P0.Product (StoreLocationId, Name, Price, Stock)
+VALUES ((SELECT ID FROM P0.StoreLocation WHERE LocationName = 'Arbys'),'Fried Chicken',10,13);
