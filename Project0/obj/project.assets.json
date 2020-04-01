@@ -5045,20 +5045,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Beemo\\.nuget\\packages\\": {}
+    "C:\\Users\\NIMES\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Beemo\\source\\repos\\jacob-project0\\Project0\\Project0.ConsoleUI.csproj",
+      "projectUniqueName": "C:\\Users\\NIMES\\Desktop\\m\\jacob-project0\\Project0\\Project0.ConsoleUI.csproj",
       "projectName": "Project0.ConsoleUI",
-      "projectPath": "C:\\Users\\Beemo\\source\\repos\\jacob-project0\\Project0\\Project0.ConsoleUI.csproj",
-      "packagesPath": "C:\\Users\\Beemo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Beemo\\source\\repos\\jacob-project0\\Project0\\obj\\",
+      "projectPath": "C:\\Users\\NIMES\\Desktop\\m\\jacob-project0\\Project0\\Project0.ConsoleUI.csproj",
+      "packagesPath": "C:\\Users\\NIMES\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\NIMES\\Desktop\\m\\jacob-project0\\Project0\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Beemo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\NIMES\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5070,11 +5077,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Beemo\\source\\repos\\jacob-project0\\BusinessLogic\\Project0.Library.csproj": {
-              "projectPath": "C:\\Users\\Beemo\\source\\repos\\jacob-project0\\BusinessLogic\\Project0.Library.csproj"
+            "C:\\Users\\NIMES\\Desktop\\m\\jacob-project0\\BusinessLogic\\Project0.Library.csproj": {
+              "projectPath": "C:\\Users\\NIMES\\Desktop\\m\\jacob-project0\\BusinessLogic\\Project0.Library.csproj"
             },
-            "C:\\Users\\Beemo\\source\\repos\\jacob-project0\\Project0.DataAccess\\Project0.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\Beemo\\source\\repos\\jacob-project0\\Project0.DataAccess\\Project0.DataAccess.csproj"
+            "C:\\Users\\NIMES\\Desktop\\m\\jacob-project0\\Project0.DataAccess\\Project0.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\NIMES\\Desktop\\m\\jacob-project0\\Project0.DataAccess\\Project0.DataAccess.csproj"
             }
           }
         }
