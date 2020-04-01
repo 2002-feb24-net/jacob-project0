@@ -71,3 +71,7 @@ VALUES ((SELECT ID FROM P0.StoreLocation WHERE LocationName = 'Arbys'),'Chicken'
 
 INSERT INTO P0.Product (StoreLocationId, Name, Price, Stock)
 VALUES ((SELECT ID FROM P0.StoreLocation WHERE LocationName = 'Arbys'),'Fried Chicken',10,13);
+
+SELECT * FROM P0.Orders;
+
+SELECT * FROM P0.StoreLocation;

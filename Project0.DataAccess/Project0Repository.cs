@@ -26,7 +26,7 @@ namespace Project0.DataAccess
                 .Include(r => r.Product).AsNoTracking();
             if (search != null)
             {
-                items = items.Where(r => r.LocationName.Contains(search));
+                items = items.Include(o => o.Orders).Include(p => p.Product).Where(r => r.LocationName.Contains(search));
             }
             return items.Select(Mapper.MapStoreLocationWithOrdersAndProduct);
         }
@@ -34,7 +34,7 @@ namespace Project0.DataAccess
         //get location by id
         public StoreLocation GetLocationsById(int id)
         {
-            return Mapper.MapStoreLocationWithOrdersAndProduct(_dbContext.StoreLocation.Find(id));
+            return Mapper.MapStoreLocationWithOrdersAndProduct(_dbContext.StoreLocation.Include(o => o.Orders).Include(p => p.Product).First(l=>l.Id == id));
         }
         
         //Add a location
@@ -63,7 +63,7 @@ namespace Project0.DataAccess
         public void UpdateLocation(StoreLocation storeLocation)
         {
             s_logger.Info($"Updating Location with ID {storeLocation.Id}");
-            StoreLocation currentEntity = _dbContext.StoreLocation.Find(storeLocation.Id);
+            StoreLocation currentEntity = _dbContext.StoreLocation.Include(o => o.Orders).Include(p => p.Product).First(r => r.Id == storeLocation.Id);
             StoreLocation newEntity = Mapper.MapStoreLocationWithOrdersAndProduct(storeLocation);
             //This marks only the changed properties as modified
 
@@ -77,7 +77,7 @@ namespace Project0.DataAccess
                 .Include(r => r.Orders).AsNoTracking();
             if (search != null)
             {
-                items = items.Where(r => r.FirstName.Contains(search[0]) && r.LastName.Contains(search[1]));
+                items = items.Include(o => o.Orders).Where(r => r.FirstName.Contains(search[0]) && r.LastName.Contains(search[1]));
             }
             return items.Select(Mapper.MapCustomerWithOrders);
         }
@@ -85,7 +85,7 @@ namespace Project0.DataAccess
         //get Customer by id
         public Customer GetCustomerById(int id)
         {
-            return Mapper.MapCustomerWithOrders(_dbContext.Customer.Find(id));
+            return Mapper.MapCustomerWithOrders(_dbContext.Customer.Include(o => o.Orders).First(c=>c.Id == id));
         }
 
         //Add a Customer
@@ -114,7 +114,7 @@ namespace Project0.DataAccess
         public void UpdateCustomer(Customer customer)
         {
             s_logger.Info($"Updating Customer with ID {customer.Id}");
-            Customer currentEntity = _dbContext.Customer.Find(customer.Id);
+            Customer currentEntity = _dbContext.Customer.Include(r => r.Orders).First(c => c.Id == (customer.Id));
             Customer newEntity = Mapper.MapCustomerWithOrders(customer);
             //This marks only the changed properties as modified
 
