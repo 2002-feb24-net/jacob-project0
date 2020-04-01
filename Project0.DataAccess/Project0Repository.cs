@@ -12,7 +12,7 @@ namespace Project0.DataAccess
         private readonly Project0Context _dbContext;
 
         private static readonly ILogger s_logger = LogManager.GetCurrentClassLogger();
-
+        
         //initializes a new Project0 Repository given an available Database
         public Project0Repository(Project0Context dbContext)
         {
@@ -23,7 +23,7 @@ namespace Project0.DataAccess
         public IEnumerable<StoreLocation> GetLocations(string search = null)
         {
             IQueryable<StoreLocation> items = _dbContext.StoreLocation
-                .Include(r => r.Product).Include(o => o.Orders).AsNoTracking();
+                .Include(r => r.Product).AsNoTracking();
             if (search != null)
             {
                 items = items.Include(o => o.Orders).Include(p => p.Product).Where(r => r.LocationName.Contains(search));
@@ -34,9 +34,9 @@ namespace Project0.DataAccess
         //get location by id
         public StoreLocation GetLocationsById(int id)
         {
-            return Mapper.MapStoreLocationWithOrdersAndProduct(_dbContext.StoreLocation.Include(o => o.Orders).Include(p => p.Product).First(l => l.Id == id));
+            return Mapper.MapStoreLocationWithOrdersAndProduct(_dbContext.StoreLocation.Include(o => o.Orders).Include(p => p.Product).First(l=>l.Id == id));
         }
-
+        
         //Add a location
         public void AddLocation(StoreLocation storeLocation)
         {
@@ -85,7 +85,7 @@ namespace Project0.DataAccess
         //get Customer by id
         public Customer GetCustomerById(int id)
         {
-            return Mapper.MapCustomerWithOrders(_dbContext.Customer.Include(o => o.Orders).First(c => c.Id == id));
+            return Mapper.MapCustomerWithOrders(_dbContext.Customer.Include(o => o.Orders).First(c=>c.Id == id));
         }
 
         //Add a Customer
